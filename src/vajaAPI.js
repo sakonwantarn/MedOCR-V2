@@ -3,7 +3,7 @@ import { WaveFile } from 'wavefile';
 import * as FileSystem from 'expo-file-system';
 
 const uriBase = 'https://api.aiforthai.in.th/vaja';
-const apikey = 'QApuaq0NZeLLpldzKZJdTXbzgwxY5vro';
+const apikey = '9CpCn1hFx625KG2VmLoyZjtfTREIbYXJ';
 
 async function createWav(raw) {
     // take specific the json raw data
@@ -70,6 +70,7 @@ async function callServer(text) {
 function _reconstruct(text) {
     // Split the text to an array by space (" ")
     var list_texts = text.split(" ");
+    
     
     console.log(list_texts);
     // remove unwanted characters on every strings in the array

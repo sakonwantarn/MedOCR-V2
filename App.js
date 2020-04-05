@@ -6,7 +6,7 @@ import { Camera } from 'expo-camera';
 import { Ionicons } from '@expo/vector-icons';
 import * as ImageManipulator from 'expo-image-manipulator';
 import { Audio } from 'expo-av';
-import {activateKeepAwake} from 'expo-keep-awake';
+import { activateKeepAwake } from 'expo-keep-awake';
 
 import Scraper from './src/Search';
 import vajaAPI from './src/vajaAPI';
@@ -64,8 +64,10 @@ export default class App extends Component {
 
   searchYa = async (stringArray) => {
     for (var i in stringArray) {
+      stringArray[i] = stringArray[i].replace(/\W|[_]|\d|mg/g, '')
       stringArray[i] = stringArray[i].replace(/\s/g, '%20')
-      stringArray[i] = stringArray[i].replace(/\W|[_]/g, '')
+     
+
       if (stringArray[i] == '')
         console.log("text unavailable")
       else {
@@ -73,15 +75,24 @@ export default class App extends Component {
         console.log(stringArray[i] + "with the result: " + result)
         if (result != undefined || result != null)
           console.log("available text")
-        console.log("\ndrug name", stringArray)
-        var result = "ชื่อยา" + " " + " " + stringArray[i] + result;
-
-        console.log("Info before Vaja", result);
-        this.playAudio(result);
+        console.log("\ndrug name", stringArray[i])
+        // console.log("Result",result)
+        console.log("First drug name", stringArray[0])
+          if(result!=0)
+            var result = "ชื่อยา" + " " + " " + stringArray[0] + " " + " " + result;
+            console.log("Info before Vaja", result);
+            this.playAudio(result);
 
       }
+
     }
+
+
   };
+  
+
+
+
 
   playAudio = async (result) => {
 
@@ -163,8 +174,8 @@ export default class App extends Component {
           >
             <View style={styles.centeredView}>
               <View style={styles.modalView}>
-                <Text style={styles.modalText}>Wait 
-                กรุณารอสักครู</Text>
+                <Text style={styles.modalText}>Wait
+                กรุณารอสักครู่</Text>
 
                 <TouchableHighlight
                   style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
