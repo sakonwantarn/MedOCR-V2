@@ -47,7 +47,7 @@ export default class App extends Component {
   processPictureManipulateBlock = async (pictPath) => {
     const manipResult = await ImageManipulator.manipulateAsync(pictPath);
     const processPictureManipulateBlock = await vision().textRecognizerProcessImage(manipResult.uri); //change path to latest image in library
-    console.log("this is from Manipulate block\n", "===========");
+    console.log("Start here\n", "===========");
 
     // console.log(manipResult) 
     console.log("text:", processPictureManipulateBlock.text);
@@ -79,8 +79,10 @@ export default class App extends Component {
         // console.log("Result",result)
         console.log("First drug name", stringArray[0])
           if(result!=0)
+            
             var result = "ชื่อยา" + " " + " " + stringArray[0] + " " + " " + result;
             console.log("Info before Vaja", result);
+            result =result.replace("ชื่อยา0",'')
             this.playAudio(result);
 
       }
