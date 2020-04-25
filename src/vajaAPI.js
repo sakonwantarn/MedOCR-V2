@@ -82,7 +82,9 @@ function _reconstruct(text) {
         list_texts[i] = list_texts[i].replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '');
     }
     // remove empty values in the array
-    list_texts = list_texts.filter(w => w);
+    
+    // list_texts = list_texts.filter(w => w);
+    console.log("list text filter inside reconstruct",list_texts)
     // reconstruct array to closer with 300 characters in every values of array
     var new_list_text = []; var tmp; var idx = 0;
     while (idx < list_texts.length - 1) {
@@ -116,6 +118,7 @@ async function vajaAPI(text) {
     // reconstruct the input text
     list_texts = _reconstruct(text);
     // main vajaAPI.js
+   console.log("Show list text", list_texts)
     var uris = [];
     for (i in list_texts) {
         var num = parseInt(i) + 1
@@ -125,6 +128,8 @@ async function vajaAPI(text) {
             console.log("> callServer started")
             console.log(list_texts[i])
             var json = await callServer(list_texts[i]);
+
+            console.log("\nlist_texts.length is:" +list_texts[i].length)
             console.log("> callServer ended")
             // wait 5s 
             await new Promise(r => setTimeout(r, 5000));
